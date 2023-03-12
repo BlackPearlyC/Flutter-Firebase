@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterfirebase/ui/auth/login_phone.dart';
 import 'package:flutterfirebase/ui/auth/signup.dart';
 import 'package:flutterfirebase/ui/post/post.dart';
 import 'package:flutterfirebase/widgets/button.dart';
@@ -108,6 +109,7 @@ class _LogInState extends State<LogIn> {
                 height: 10,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("Don't have an account?"),
                   TextButton(
@@ -119,6 +121,24 @@ class _LogInState extends State<LogIn> {
                       },
                       child: const Text("Sign up"))
                 ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LogInPhone()));
+                },
+                child: Container(
+                  height: 45,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(color: Colors.black)),
+                  child: const Center(child: Text("Login using phone no.")),
+                ),
               )
             ],
           ),
