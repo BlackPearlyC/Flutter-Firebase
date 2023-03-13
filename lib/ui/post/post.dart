@@ -99,7 +99,6 @@ class _PostState extends State<Post> {
                             )),
                         PopupMenuItem(
                             onTap: () {
-                              Navigator.pop(context);
                               databaseRef.child(id).remove().then((value) {
                                 Fluttertoast.showToast(
                                     msg: "Deleted Successfully",
@@ -112,7 +111,7 @@ class _PostState extends State<Post> {
                                     textColor: Colors.white);
                               });
                             },
-                            value: 1,
+                            value: 2,
                             child: const ListTile(
                               leading: Icon(Icons.delete),
                               title: Text("Delete"),

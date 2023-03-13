@@ -1,8 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterfirebase/ui/auth/forgot_password.dart';
 import 'package:flutterfirebase/ui/auth/login_phone.dart';
 import 'package:flutterfirebase/ui/auth/signup.dart';
+import 'package:flutterfirebase/ui/firestore/firestore_post.dart';
+// ignore: unused_import
 import 'package:flutterfirebase/ui/post/post.dart';
 import 'package:flutterfirebase/widgets/button.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -50,6 +53,7 @@ class _LogInState extends State<LogIn> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Form for email and password
               Form(
                 key: _formKey,
                 child: Column(
@@ -96,6 +100,7 @@ class _LogInState extends State<LogIn> {
               const SizedBox(
                 height: 30,
               ),
+              // Login button
               Button(
                 text: "Login",
                 loading: loading,
@@ -108,6 +113,19 @@ class _LogInState extends State<LogIn> {
               const SizedBox(
                 height: 10,
               ),
+              // Forgot password
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ForgotPassword()));
+                    },
+                    child: const Text("Forgot Password")),
+              ),
+              // Signup button
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -125,6 +143,7 @@ class _LogInState extends State<LogIn> {
               const SizedBox(
                 height: 20,
               ),
+              // Login through phone no.
               InkWell(
                 onTap: () {
                   Navigator.push(
@@ -162,7 +181,9 @@ class _LogInState extends State<LogIn> {
       Fluttertoast.showToast(
           msg: "Login Successfully", backgroundColor: Colors.deepPurple);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const Post()));
+          // context, MaterialPageRoute(builder: (context) => const Post()));
+          context,
+          MaterialPageRoute(builder: (context) => const FirestorePost()));
     }).onError((error, stackTrace) {
       setState(() {
         loading = false;
